@@ -4,8 +4,24 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "brand": {
+          "type": "brand_information",
+          "settings": { "show_social": true }
+        },
+        "shop": {
+          "type": "link_list",
+          "settings": { "heading": "Shop", "menu": "main-menu" }
+        },
+        "support": {
+          "type": "text",
+          "settings": {
+            "heading": "Support",
+            "subtext": "<p>Wholesale &amp; facility orders, shipping, and returns — <a href=\"/pages/contact\">get in touch</a>. Government / GSA inquiries welcome.</p>"
+          }
+        }
+      },
+      "block_order": ["brand", "shop", "support"],
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": true,
