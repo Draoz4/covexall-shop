@@ -1451,5 +1451,40 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Covexall Chat",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cvx_chat_enabled",
+        "label": "Enable chat assistant",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "cvx_chat_webhook",
+        "label": "RAG webhook URL",
+        "info": "The n8n endpoint that answers questions. Defaults to the Covexall RAG webhook."
+      },
+      {
+        "type": "text",
+        "id": "cvx_chat_title",
+        "label": "Header title",
+        "default": "Covexall"
+      },
+      {
+        "type": "text",
+        "id": "cvx_chat_subtitle",
+        "label": "Header subtitle",
+        "default": "Sanitary & Disinfection Products"
+      },
+      {
+        "type": "textarea",
+        "id": "cvx_chat_greeting",
+        "label": "Opening message",
+        "default": "Hey! 👋 Welcome to Covexall. I'm here to help you find the right sanitary and disinfection products for your needs.\n\nAre you looking to solve a specific cleaning challenge, or exploring what's out there?"
+      }
+    ]
   }
 ]

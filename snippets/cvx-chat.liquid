@@ -1,0 +1,210 @@
+{%- comment -%}
+  Covexall RAG chat assistant.
+  Self-contained widget ported from the Landing Page 4 chatbot. It calls the same
+  n8n RAG webhook (POST {message, chatId} -> {output|text|response|message}).
+  All copy + the webhook URL are editable in Theme settings > Covexall Chat.
+  Rendered site-wide from layout/theme.liquid.
+{%- endcomment -%}
+
+{%- liquid
+  assign cvx_webhook = settings.cvx_chat_webhook | default: 'https://n8n.nutricove.co/webhook/covexall-rag'
+  assign cvx_title = settings.cvx_chat_title | default: 'Covexall'
+  assign cvx_subtitle = settings.cvx_chat_subtitle | default: 'Sanitary & Disinfection Products'
+  assign cvx_greeting = settings.cvx_chat_greeting | default: "Hey! 👋 Welcome to Covexall. I'm here to help you find the right sanitary and disinfection products for your needs."
+-%}
+
+<button id="cvx-toggle" type="button" aria-label="Open chat assistant" aria-expanded="false">
+  <svg class="cvx-chat-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <svg class="cvx-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<div id="cvx-window" role="dialog" aria-label="{{ cvx_title | escape }} chat assistant">
+  <div id="cvx-chat-header">
+    <h2>{{ cvx_title | escape }}</h2>
+    <p>{{ cvx_subtitle | escape }}</p>
+  </div>
+  <div id="cvx-messages" aria-live="polite"></div>
+  <div id="cvx-input-area">
+    <textarea id="cvx-input" rows="1" placeholder="Type a message..." autocomplete="off" aria-label="Message"></textarea>
+    <button id="cvx-send" type="button" disabled aria-label="Send message">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div id="cvx-chat-footer">Powered by <a href="https://nutricove.co" target="_blank" rel="noopener">NutriCove</a></div>
+</div>
+
+{% style %}
+  #cvx-toggle {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--cvx-teal, #0bb8b0); border: none; cursor: pointer;
+    z-index: 10000; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(11, 184, 176, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+  }
+  #cvx-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(11, 184, 176, 0.5); }
+  #cvx-toggle.open .cvx-chat-icon { display: none; }
+  #cvx-toggle.open .cvx-close-icon { display: block; }
+  #cvx-toggle:not(.open) .cvx-chat-icon { display: block; }
+  #cvx-toggle:not(.open) .cvx-close-icon { display: none; }
+
+  #cvx-window {
+    position: fixed; bottom: 100px; right: 24px;
+    width: 400px; max-width: calc(100vw - 48px);
+    height: 560px; max-height: calc(100vh - 140px);
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 12px 48px rgba(14, 34, 48, 0.18), 0 4px 12px rgba(14, 34, 48, 0.08);
+    display: flex; flex-direction: column;
+    z-index: 9999; overflow: hidden;
+    font-family: 'Manrope', system-ui, sans-serif;
+    opacity: 0; transform: translateY(16px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  #cvx-window.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+  #cvx-chat-header { background: var(--cvx-navy, #0e2230); padding: 20px 24px; color: #fff; flex-shrink: 0; }
+  #cvx-chat-header h2 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 2px; }
+  #cvx-chat-header p { font-size: 13px; opacity: 0.8; font-weight: 400; margin: 0; }
+
+  #cvx-messages { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+  #cvx-messages::-webkit-scrollbar { width: 5px; }
+  #cvx-messages::-webkit-scrollbar-thumb { background: rgba(14, 34, 48, 0.12); border-radius: 10px; }
+
+  .cvx-msg { max-width: 85%; padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.55; word-wrap: break-word; animation: cvx-fade-in 0.25s ease; }
+  @keyframes cvx-fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .cvx-msg.bot { background: var(--cvx-mist, #eef4f6); color: var(--cvx-ink, #0e2230); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .cvx-msg.user { background: var(--cvx-teal, #0bb8b0); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+
+  .cvx-typing { display: flex; gap: 5px; padding: 14px 18px; align-self: flex-start; background: var(--cvx-mist, #eef4f6); border-radius: 14px; border-bottom-left-radius: 4px; animation: cvx-fade-in 0.25s ease; }
+  .cvx-typing span { width: 7px; height: 7px; background: var(--cvx-muted, #6b8391); border-radius: 50%; animation: cvx-bounce 1.2s infinite; }
+  .cvx-typing span:nth-child(2) { animation-delay: 0.15s; }
+  .cvx-typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes cvx-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+  #cvx-input-area { padding: 12px 16px; border-top: 1px solid var(--cvx-line, #e2ebee); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; background: #fff; }
+  #cvx-input { flex: 1; border: 1.5px solid var(--cvx-line, #e2ebee); border-radius: 12px; padding: 10px 14px; font-family: inherit; font-size: 14px; resize: none; outline: none; max-height: 100px; line-height: 1.4; color: var(--cvx-ink, #0e2230); transition: border-color 0.15s ease; }
+  #cvx-input:focus { border-color: var(--cvx-teal, #0bb8b0); }
+  #cvx-input::placeholder { color: var(--cvx-muted, #6b8391); }
+
+  #cvx-send { width: 40px; height: 40px; border-radius: 10px; background: var(--cvx-teal, #0bb8b0); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s ease, transform 0.1s ease; }
+  #cvx-send:hover { background: var(--cvx-teal-deep, #0a9a94); }
+  #cvx-send:active { transform: scale(0.94); }
+  #cvx-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  #cvx-chat-footer { text-align: center; padding: 8px; font-size: 11px; color: var(--cvx-muted, #6b8391); border-top: 1px solid var(--cvx-line, #e2ebee); flex-shrink: 0; }
+  #cvx-chat-footer a { color: var(--cvx-teal-deep, #0a9a94); text-decoration: none; font-weight: 600; }
+
+  @media (max-width: 480px) {
+    #cvx-window { bottom: 0; right: 0; width: 100vw; height: 100vh; max-height: 100vh; max-width: 100vw; border-radius: 0; }
+    #cvx-toggle.open { opacity: 0; pointer-events: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #cvx-window, #cvx-toggle, .cvx-msg, .cvx-typing { transition: none; animation: none; }
+    .cvx-typing span { animation: none; }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var CFG = {
+      webhook: {{ cvx_webhook | json }},
+      greeting: {{ cvx_greeting | json }}
+    };
+    var toggle = document.getElementById('cvx-toggle');
+    var win = document.getElementById('cvx-window');
+    var messages = document.getElementById('cvx-messages');
+    var input = document.getElementById('cvx-input');
+    var send = document.getElementById('cvx-send');
+    if (!toggle || !win) return;
+
+    var isOpen = false;
+    var isSending = false;
+    var greeted = false;
+
+    // Per-visit session id for conversation continuity on the RAG side.
+    var sessionId = sessionStorage.getItem('cvx_session_id');
+    if (!sessionId) {
+      sessionId = 'cx-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6);
+      sessionStorage.setItem('cvx_session_id', sessionId);
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    function format(text) {
+      return esc(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    }
+    function addMsg(type, text) {
+      var el = document.createElement('div');
+      el.className = 'cvx-msg ' + type;
+      el.innerHTML = format(text);
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+      return el;
+    }
+    function addTyping() {
+      var el = document.createElement('div');
+      el.className = 'cvx-typing';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+      return el;
+    }
+
+    function openChat() {
+      isOpen = !isOpen;
+      toggle.classList.toggle('open', isOpen);
+      win.classList.toggle('visible', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen && !greeted) {
+        greeted = true;
+        addMsg('bot', CFG.greeting);
+      }
+      if (isOpen) setTimeout(function () { input.focus(); }, 300);
+    }
+
+    async function sendMessage() {
+      var text = input.value.trim();
+      if (!text || isSending) return;
+      addMsg('user', text);
+      input.value = '';
+      input.style.height = 'auto';
+      isSending = true;
+      send.disabled = true;
+      var typing = addTyping();
+      try {
+        var res = await fetch(CFG.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text, chatId: sessionId })
+        });
+        var data = await res.json();
+        var reply = data.output || data.text || data.response || data.message || "Sorry, I didn't get a response. Try again.";
+        typing.remove();
+        addMsg('bot', reply);
+      } catch (err) {
+        typing.remove();
+        addMsg('bot', 'Something went wrong. Please try again in a moment.');
+      }
+      isSending = false;
+      send.disabled = false;
+      input.focus();
+    }
+
+    toggle.addEventListener('click', openChat);
+    send.addEventListener('click', sendMessage);
+    input.addEventListener('input', function () {
+      send.disabled = input.value.trim().length === 0;
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+    });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+  })();
+</script>
