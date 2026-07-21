@@ -1,0 +1,144 @@
+{%- comment -%}
+  Covexall research / proof section.
+  Every figure here is drawn directly from the Covexall white paper
+  (IMPACT Diversity Solutions, 2022) and the independent lab reports it cites:
+    - Kill-rate testing: Microconsult, Inc. (reports 1 & 15 Sept 2020),
+      11 bacterial species at 30s / 60s exposure; C. difficile spore study.
+    - Duration testing: certified Biosafety Level 3 (BSL-3) facility,
+      SARS-CoV-2 surface persistence at 1 hr and 4 hr.
+  Do not add figures that are not in the white paper. Metrics + result rows are
+  editable blocks so the merchant can adjust wording, but keep numbers accurate.
+{%- endcomment -%}
+
+<section class="cvx-proof cvx-section" id="{{ section.settings.anchor | default: 'results' | handle }}">
+  <div class="cvx-wrap">
+    <div class="cvx-sec-head cvx-center">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="cvx-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p>{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- assign metric_blocks = section.blocks | where: 'type', 'metric' -%}
+    {%- if metric_blocks.size > 0 -%}
+      <div class="cvx-proof-metrics">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'metric' -%}
+            <div class="cvx-proof-card" {{ block.shopify_attributes }}>
+              <div class="cvx-metric">{{ block.settings.value }}</div>
+              <div class="cvx-metric-label">{{ block.settings.label }}</div>
+              {%- if block.settings.source != blank -%}
+                <div class="cvx-metric-source">{{ block.settings.source }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- assign result_blocks = section.blocks | where: 'type', 'result' -%}
+    {%- if section.settings.show_results and result_blocks.size > 0 -%}
+      <div class="cvx-proof-results">
+        {%- if section.settings.results_title != blank -%}
+          <h3>{{ section.settings.results_title }}</h3>
+        {%- endif -%}
+        {%- if section.settings.results_note != blank -%}
+          <p class="cvx-results-note">{{ section.settings.results_note }}</p>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'result' -%}
+            <div class="cvx-result-row" {{ block.shopify_attributes }}>
+              <span class="cvx-organism">{{ block.settings.organism }}</span>
+              <span class="cvx-detail">{{ block.settings.detail }}</span>
+              <span class="cvx-value">
+                {%- render 'cvx-icon', name: 'check' -%}
+                {{ block.settings.value }}
+              </span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.citation != blank -%}
+      <p class="cvx-proof-cite">{{ section.settings.citation }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Covexall Research Proof",
+  "tag": "section",
+  "class": "cvx-section-proof",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Section anchor id", "default": "results" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Lab-Verified Results" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Backed by independent lab testing" },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Every Covexall claim traces back to controlled testing at independent laboratories — not marketing estimates."
+    },
+    { "type": "header", "content": "Results table" },
+    { "type": "checkbox", "id": "show_results", "label": "Show results table", "default": true },
+    { "type": "text", "id": "results_title", "label": "Table title", "default": "Kill-rate testing — log₁₀ reduction at 60-second exposure" },
+    {
+      "type": "text",
+      "id": "results_note",
+      "label": "Table note",
+      "default": "Complete kill (no growth detected) unless otherwise noted. A 5-log reduction means 99.999% of organisms eliminated."
+    },
+    {
+      "type": "textarea",
+      "id": "citation",
+      "label": "Citation / source line",
+      "info": "Keep attributions accurate to the white paper. Add specific lab or researcher names only with permission.",
+      "default": "Sources: Kill-rate data — Microconsult, Inc. (11 bacterial species, 30- and 60-second exposure; C. difficile spore study, 2020). Duration data — certified Biosafety Level 3 (BSL-3) laboratory, SARS-CoV-2 surface persistence at 1 and 4 hours. Full methods in the Covexall white paper. Duration testing at 4 hours confirmed for SARS-CoV-2 and S. aureus; other pathogens verified for on-contact kill."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Metric card",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "11 / 11" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Bacterial species eliminated at 60 seconds" },
+        { "type": "text", "id": "source", "label": "Source", "default": "Microconsult, Inc." }
+      ]
+    },
+    {
+      "type": "result",
+      "name": "Result row",
+      "settings": [
+        { "type": "inline_richtext", "id": "organism", "label": "Organism", "default": "<em>E. coli</em>" },
+        { "type": "text", "id": "detail", "label": "Detail", "default": "Gram-negative bacterium" },
+        { "type": "text", "id": "value", "label": "Value", "default": "5.93 log₁₀" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Covexall Research Proof",
+      "blocks": [
+        { "type": "metric", "settings": { "value": "11 / 11", "label": "Bacterial species eliminated at 60 seconds", "source": "Microconsult, Inc." } },
+        { "type": "metric", "settings": { "value": "99.98%", "label": "SARS-CoV-2 killed, sustained to 4 hours", "source": "BSL-3 duration study" } },
+        { "type": "metric", "settings": { "value": "5.22 log₁₀", "label": "C. difficile spore reduction — a notoriously hard target", "source": "Microconsult, Inc." } },
+        { "type": "metric", "settings": { "value": "≤ 60 sec", "label": "To complete kill on contact", "source": "30–60s exposure study" } },
+        { "type": "result", "settings": { "organism": "<em>E. coli</em>", "detail": "Gram-negative bacterium", "value": "5.93 log₁₀" } },
+        { "type": "result", "settings": { "organism": "MRSA (<em>S. aureus</em>)", "detail": "Methicillin-resistant", "value": "5.88 log₁₀" } },
+        { "type": "result", "settings": { "organism": "<em>P. aeruginosa</em>", "detail": "Opportunistic pathogen", "value": "5.75 log₁₀" } },
+        { "type": "result", "settings": { "organism": "<em>K. pneumoniae</em>", "detail": "Gram-negative bacterium", "value": "5.58 log₁₀" } },
+        { "type": "result", "settings": { "organism": "<em>C. difficile</em>", "detail": "Active culture", "value": "5.38 log₁₀" } },
+        { "type": "result", "settings": { "organism": "<em>C. difficile</em> spores", "detail": "Spore form — resists alcohol", "value": "5.22 log₁₀" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -57,6 +57,32 @@
         "tl_label_5": "4 hr"
       }
     },
+    "research_proof": {
+      "type": "research-proof",
+      "blocks": {
+        "m-1": { "type": "metric", "settings": { "value": "11 / 11", "label": "Bacterial species eliminated at 60 seconds", "source": "Microconsult, Inc." } },
+        "m-2": { "type": "metric", "settings": { "value": "99.98%", "label": "SARS-CoV-2 killed, sustained to 4 hours", "source": "BSL-3 duration study" } },
+        "m-3": { "type": "metric", "settings": { "value": "5.22 log₁₀", "label": "C. difficile spore reduction — a notoriously hard target", "source": "Microconsult, Inc." } },
+        "m-4": { "type": "metric", "settings": { "value": "≤ 60 sec", "label": "To complete kill on contact", "source": "30–60s exposure study" } },
+        "r-1": { "type": "result", "settings": { "organism": "<em>E. coli</em>", "detail": "Gram-negative bacterium", "value": "5.93 log₁₀" } },
+        "r-2": { "type": "result", "settings": { "organism": "MRSA (<em>S. aureus</em>)", "detail": "Methicillin-resistant", "value": "5.88 log₁₀" } },
+        "r-3": { "type": "result", "settings": { "organism": "<em>P. aeruginosa</em>", "detail": "Opportunistic pathogen", "value": "5.75 log₁₀" } },
+        "r-4": { "type": "result", "settings": { "organism": "<em>K. pneumoniae</em>", "detail": "Gram-negative bacterium", "value": "5.58 log₁₀" } },
+        "r-5": { "type": "result", "settings": { "organism": "<em>C. difficile</em>", "detail": "Active culture", "value": "5.38 log₁₀" } },
+        "r-6": { "type": "result", "settings": { "organism": "<em>C. difficile</em> spores", "detail": "Spore form — resists alcohol", "value": "5.22 log₁₀" } }
+      },
+      "block_order": ["m-1", "m-2", "m-3", "m-4", "r-1", "r-2", "r-3", "r-4", "r-5", "r-6"],
+      "settings": {
+        "anchor": "results",
+        "eyebrow": "Lab-Verified Results",
+        "heading": "Backed by independent lab testing",
+        "intro": "Every Covexall claim traces back to controlled testing at independent laboratories — not marketing estimates.",
+        "show_results": true,
+        "results_title": "Kill-rate testing — log₁₀ reduction at 60-second exposure",
+        "results_note": "Complete kill (no growth detected) unless otherwise noted. A 5-log reduction means 99.999% of organisms eliminated.",
+        "citation": "Sources: Kill-rate data — Microconsult, Inc. (11 bacterial species, 30- and 60-second exposure; C. difficile spore study, 2020). Duration data — certified Biosafety Level 3 (BSL-3) laboratory, SARS-CoV-2 surface persistence at 1 and 4 hours. Full methods in the Covexall white paper. Duration testing at 4 hours confirmed for SARS-CoV-2 and S. aureus; other pathogens verified for on-contact kill."
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -123,6 +149,7 @@
     "covexall_hero",
     "trust_bar",
     "science_story",
+    "research_proof",
     "featured_collection",
     "catalog_handoff",
     "certifications"
