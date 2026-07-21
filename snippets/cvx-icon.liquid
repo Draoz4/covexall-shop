@@ -1,0 +1,36 @@
+{%- comment -%}
+  Covexall inline SVG icon set. Usage: {% render 'cvx-icon', name: 'check' %}
+  Icons inherit color via currentColor and size via the parent's CSS.
+{%- endcomment -%}
+{%- liquid
+  assign sw = 2
+  if name == 'arrow' or name == 'check'
+    assign sw = 2.4
+  endif
+-%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ sw }}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {%- case name -%}
+    {%- when 'arrow' -%}
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    {%- when 'check' -%}
+      <path d="M20 6 9 17l-5-5"/>
+    {%- when 'clock' -%}
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+    {%- when 'drop' -%}
+      <path d="M12 2v20M5 8s2-3 7-3 7 3 7 3"/>
+    {%- when 'shield' -%}
+      <path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/>
+    {%- when 'shield-solid' -%}
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    {%- when 'lines' -%}
+      <path d="M3 7h18M3 12h18M3 17h18"/>
+    {%- when 'lock' -%}
+      <rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+    {%- when 'registered' -%}
+      <path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>
+    {%- when 'flask' -%}
+      <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/>
+    {%- else -%}
+      <path d="M20 6 9 17l-5-5"/>
+  {%- endcase -%}
+</svg>

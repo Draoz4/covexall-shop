@@ -1,0 +1,94 @@
+{%- comment -%}
+  Covexall → Dynarex medical-supply catalog handoff.
+  Navy rounded block: copy + CTA on the left, editable stat tiles on the right.
+{%- endcomment -%}
+
+<section class="cvx-section" id="{{ section.settings.anchor | default: 'catalog' | handle }}" style="padding-bottom:0">
+  <div class="cvx-wrap">
+    <div class="cvx-catalog">
+      <div class="cvx-catalog-in">
+        <div class="cvx-catalog-copy">
+          {%- if section.settings.eyebrow != blank -%}
+            <span class="cvx-eyebrow">{{ section.settings.eyebrow }}</span>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2>{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <p>{{ section.settings.text }}</p>
+          {%- endif -%}
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="cvx-btn cvx-btn-primary">
+              {{ section.settings.button_label }}
+              {%- render 'cvx-icon', name: 'arrow' -%}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="cvx-cat-stats">
+            {%- for block in section.blocks -%}
+              <div class="cvx-cat-stat" {{ block.shopify_attributes }}>
+                <b>{{ block.settings.value }}</b>
+                <span>{{ block.settings.label }}</span>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Covexall Catalog Handoff",
+  "tag": "section",
+  "class": "cvx-section-catalog",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Section anchor id", "default": "catalog" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Full Medical Supply Catalog" },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Everything else your facility orders — in one place."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Paragraph",
+      "default": "<p>Beyond Covexall, browse our complete medical-supply catalog: wound care, catheters, gauze, exam essentials and more. Built for clinics, facilities, and institutional buyers.</p>"
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Browse medical supplies" },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Point to the Dynarex / medical-supplies collection."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat tile",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "100+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Products in catalog" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Covexall Catalog Handoff",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "100+", "label": "Products in catalog" } },
+        { "type": "stat", "settings": { "value": "Bulk", "label": "Case & volume pricing" } },
+        { "type": "stat", "settings": { "value": "GSA", "label": "Government-ready" } },
+        { "type": "stat", "settings": { "value": "Fast", "label": "Reliable fulfillment" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

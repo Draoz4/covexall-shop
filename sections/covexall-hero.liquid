@@ -1,0 +1,213 @@
+{%- comment -%}
+  Covexall custom hero — the "protection rings" product stage.
+  Signature element A from the design brief. Everything is editable via the theme
+  customizer. Marketing copy defaults are drawn from the approved claim set only.
+{%- endcomment -%}
+
+<section class="cvx-hero" aria-label="{{ section.settings.aria_label | default: 'Covexall hero' | escape }}">
+  <div class="cvx-wrap cvx-hero-in">
+    <div class="cvx-hero-copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="cvx-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1>{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.lead != blank -%}
+        <p class="cvx-lead">{{ section.settings.lead }}</p>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="cvx-hero-claims">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'claim' -%}
+              <span class="cvx-claim" {{ block.shopify_attributes }}>
+                {%- render 'cvx-icon', name: block.settings.icon -%}
+                {{ block.settings.text }}
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="cvx-hero-cta">
+        {%- if section.settings.primary_label != blank -%}
+          <a href="{{ section.settings.primary_link | default: '#' }}" class="cvx-btn cvx-btn-primary">
+            {{ section.settings.primary_label }}
+            {%- render 'cvx-icon', name: 'arrow' -%}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a href="{{ section.settings.secondary_link | default: '#' }}" class="cvx-btn cvx-btn-ghost">
+            {{ section.settings.secondary_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.fine_print != blank -%}
+        <p class="cvx-hero-note">{{ section.settings.fine_print }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="cvx-stage">
+      <div class="cvx-ring r1"></div>
+      <div class="cvx-ring r2"></div>
+      <div class="cvx-ring r3"></div>
+
+      {%- if section.settings.product_image != blank -%}
+        <div class="cvx-stage-media">
+          {{
+            section.settings.product_image
+            | image_url: width: 560
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              sizes: '(max-width: 900px) 60vw, 280px',
+              widths: '280, 420, 560',
+              alt: section.settings.product_image.alt | default: section.settings.heading | escape
+          }}
+        </div>
+      {%- else -%}
+        {%- comment -%} Placeholder bottle until the merchant uploads a real Covexall product photo. {%- endcomment -%}
+        <div class="cvx-bottle" aria-hidden="true">
+          <div class="cap"></div>
+          <div class="neck"></div>
+          <div class="body"></div>
+          <div class="label">
+            <div class="b">COVEXALL</div>
+            <div class="s">Protective Shield</div>
+            <div class="line"></div>
+            <div class="d">KILLS 99.9% OF GERMS · 4-HOUR</div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.stage_caption != blank -%}
+        <span class="cvx-stage-tag">{{ section.settings.stage_caption }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Covexall Hero",
+  "tag": "section",
+  "class": "cvx-section-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Advanced Surface & Hand Protection"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Use italic to highlight words in teal.",
+      "default": "Protection that <em>keeps working</em> long after you do."
+    },
+    {
+      "type": "text",
+      "id": "lead",
+      "label": "Lead paragraph",
+      "default": "A water-based, alcohol-free shield that kills germs on contact — and stays protecting surfaces and hands for hours."
+    },
+    {
+      "type": "header",
+      "content": "Call to action buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop Covexall"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "How it works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine-print line",
+      "info": "Approved claim set only. Do not add pathogens beyond those tested.",
+      "default": "Proven effective against COVID-19, MRSA, C. diff & E. coli · NDC 77238-221-24"
+    },
+    {
+      "type": "header",
+      "content": "Product stage"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product photo",
+      "info": "Real Covexall bottle photo (PNG with transparency recommended). A placeholder shows until set."
+    },
+    {
+      "type": "text",
+      "id": "stage_caption",
+      "label": "Caption pill",
+      "default": "One application · lasting protection"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Section label (accessibility)",
+      "default": "Covexall hero"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "claim",
+      "name": "Claim chip",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "drop", "label": "Water drop" },
+            { "value": "shield", "label": "Shield" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Kills 99.9% on contact"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Covexall Hero",
+      "blocks": [
+        { "type": "claim", "settings": { "icon": "check", "text": "Kills 99.9% on contact" } },
+        { "type": "claim", "settings": { "icon": "clock", "text": "Up to 4-hour protection" } },
+        { "type": "claim", "settings": { "icon": "drop", "text": "Water-based · alcohol-free" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

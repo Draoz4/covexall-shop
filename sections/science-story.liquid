@@ -1,0 +1,178 @@
+{%- comment -%}
+  Covexall science / story section.
+  Left: a "science card" with numbered process steps.
+  Right: heading, checkmark points, and the signature 4-hour protection timeline
+  (signature element B). Steps and points are editable blocks.
+{%- endcomment -%}
+
+<section class="cvx-story cvx-section" id="{{ section.settings.anchor | default: 'science' | handle }}">
+  <div class="cvx-wrap cvx-story-grid">
+    <div class="cvx-science-card">
+      <div class="cvx-science-inner">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'step' -%}
+            <div class="cvx-layer" {{ block.shopify_attributes }}>
+              <div class="cvx-dot">{%- render 'cvx-icon', name: block.settings.icon -%}</div>
+              <div>
+                <h4>{{ block.settings.title }}</h4>
+                {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="cvx-story-body">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="cvx-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- assign point_blocks = section.blocks | where: 'type', 'point' -%}
+      {%- if point_blocks.size > 0 -%}
+        <ul class="cvx-story-points">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'point' -%}
+              <li {{ block.shopify_attributes }}>
+                {%- render 'cvx-icon', name: 'check' -%}
+                <span><b>{{ block.settings.lead }}</b> {{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.show_timeline -%}
+        <div class="cvx-timeline">
+          <div class="cvx-tl-top">
+            <b>{{ section.settings.timeline_title }}</b>
+            <span>{{ section.settings.timeline_note }}</span>
+          </div>
+          <div class="cvx-track">
+            <div class="cvx-fill"></div>
+            <div class="cvx-ticks"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="cvx-tl-labels">
+            <span>{{ section.settings.tl_label_1 }}</span>
+            <span>{{ section.settings.tl_label_2 }}</span>
+            <span>{{ section.settings.tl_label_3 }}</span>
+            <span>{{ section.settings.tl_label_4 }}</span>
+            <span>{{ section.settings.tl_label_5 }}</span>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Covexall Science Story",
+  "tag": "section",
+  "class": "cvx-section-story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Section anchor id",
+      "info": "Used for in-page links (e.g. the nav \"The Science\" link).",
+      "default": "science"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Science"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A liquid glove that doesn't wash off in seconds."
+    },
+    {
+      "type": "header",
+      "content": "4-hour protection timeline"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timeline",
+      "label": "Show timeline",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "timeline_title",
+      "label": "Timeline title",
+      "default": "How long protection lasts"
+    },
+    {
+      "type": "text",
+      "id": "timeline_note",
+      "label": "Timeline note",
+      "default": "single application"
+    },
+    { "type": "text", "id": "tl_label_1", "label": "Label 1", "default": "Apply" },
+    { "type": "text", "id": "tl_label_2", "label": "Label 2", "default": "1 hr" },
+    { "type": "text", "id": "tl_label_3", "label": "Label 3", "default": "2 hr" },
+    { "type": "text", "id": "tl_label_4", "label": "Label 4", "default": "3 hr" },
+    { "type": "text", "id": "tl_label_5", "label": "Label 5", "default": "4 hr" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "drop", "label": "Water drop" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "shield-solid", "label": "Shield" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "drop"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "1 · Applied as a fine mist" },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "Water-based formula spreads evenly across skin or surface."
+        }
+      ]
+    },
+    {
+      "type": "point",
+      "name": "Checkmark point",
+      "settings": [
+        { "type": "text", "id": "lead", "label": "Bold lead", "default": "Alcohol-free & gentle." },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "No sting, no dryness — safe enough for frequent use by the whole family."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Covexall Science Story",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "drop", "title": "1 · Applied as a fine mist", "text": "Water-based formula spreads evenly across skin or surface." } },
+        { "type": "step", "settings": { "icon": "check", "title": "2 · Kills germs on contact", "text": "Neutralizes 99.9% of germs the moment it lands." } },
+        { "type": "step", "settings": { "icon": "shield-solid", "title": "3 · Forms a lasting shield", "text": "A microplatelet layer keeps protecting for up to 4 hours." } },
+        { "type": "point", "settings": { "lead": "Alcohol-free & gentle.", "text": "No sting, no dryness — safe enough for frequent use by the whole family." } },
+        { "type": "point", "settings": { "lead": "Works on hands and surfaces.", "text": "One product for personal protection and the high-touch surfaces around you." } },
+        { "type": "point", "settings": { "lead": "Lasting, not momentary.", "text": "Where alcohol sanitizers flash off in seconds, Covexall keeps protecting for hours." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

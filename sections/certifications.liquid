@@ -1,0 +1,77 @@
+{%- comment -%}
+  Covexall certifications row — centered trust cards.
+  Each cert is an editable block (icon + title + caption).
+{%- endcomment -%}
+
+<section class="cvx-certs cvx-section" id="{{ section.settings.anchor | default: 'certs' | handle }}" style="padding-top:0">
+  <div class="cvx-wrap">
+    <div class="cvx-sec-head cvx-center">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="cvx-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="cvx-cert-row">
+        {%- for block in section.blocks -%}
+          <div class="cvx-cert" {{ block.shopify_attributes }}>
+            {%- render 'cvx-icon', name: block.settings.icon -%}
+            <b>{{ block.settings.title }}</b>
+            <span>{{ block.settings.caption }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Covexall Certifications",
+  "tag": "section",
+  "class": "cvx-section-certs",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Section anchor id", "default": "certs" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why Trust Covexall" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Built to a clinical standard" }
+  ],
+  "blocks": [
+    {
+      "type": "cert",
+      "name": "Certification",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Shield" },
+            { "value": "registered", "label": "Registered" },
+            { "value": "clock", "label": "Clock / lab" },
+            { "value": "lines", "label": "Flag / stripes" },
+            { "value": "check", "label": "Checkmark" }
+          ],
+          "default": "shield"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "FDA cGMP" },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Compliant manufacturing" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Covexall Certifications",
+      "blocks": [
+        { "type": "cert", "settings": { "icon": "shield", "title": "FDA cGMP", "caption": "Compliant manufacturing" } },
+        { "type": "cert", "settings": { "icon": "registered", "title": "Registered", "caption": "NDC 77238-221-24" } },
+        { "type": "cert", "settings": { "icon": "clock", "title": "Lab-proven", "caption": "COVID · MRSA · C. diff" } },
+        { "type": "cert", "settings": { "icon": "lines", "title": "Made in USA", "caption": "Domestic production" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

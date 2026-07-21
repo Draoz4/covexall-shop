@@ -1,0 +1,63 @@
+{%- comment -%}
+  Covexall trust bar — dark navy strip of credibility signals.
+  Items are repeatable blocks (icon + text) so the merchant can edit them.
+{%- endcomment -%}
+
+<div class="cvx-trust">
+  <div class="cvx-wrap cvx-trust-in">
+    {%- for block in section.blocks -%}
+      <div class="cvx-trust-item" {{ block.shopify_attributes }}>
+        {%- render 'cvx-icon', name: block.settings.icon -%}
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Covexall Trust Bar",
+  "tag": "section",
+  "class": "cvx-section-trust",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Shield" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "lines", "label": "Flag / stripes" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "registered", "label": "Registered" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "FDA cGMP-compliant facility"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Covexall Trust Bar",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "shield", "text": "FDA cGMP-compliant facility" } },
+        { "type": "item", "settings": { "icon": "check", "text": "Registered · NDC 77238-221-24" } },
+        { "type": "item", "settings": { "icon": "lines", "text": "Made in the USA" } },
+        { "type": "item", "settings": { "icon": "lock", "text": "Secure checkout" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
