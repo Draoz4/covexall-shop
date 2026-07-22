@@ -1,10 +1,322 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "main-404"
+      "type": "main-404",
+      "disabled": true,
+      "settings": {}
+    },
+    "covexall_hero_CUkG8k": {
+      "type": "covexall-hero",
+      "blocks": {
+        "claim_RtaLdR": {
+          "type": "claim",
+          "settings": {
+            "icon": "check",
+            "text": "Kills 99.9% on contact"
+          }
+        },
+        "claim_3zL9XC": {
+          "type": "claim",
+          "settings": {
+            "icon": "clock",
+            "text": "Up to 4-hour protection"
+          }
+        },
+        "claim_iexc8f": {
+          "type": "claim",
+          "settings": {
+            "icon": "drop",
+            "text": "Water-based · alcohol-free"
+          }
+        }
+      },
+      "block_order": [
+        "claim_RtaLdR",
+        "claim_3zL9XC",
+        "claim_iexc8f"
+      ],
+      "name": "Covexall Hero",
+      "settings": {
+        "eyebrow": "Advanced Surface & Hand Protection",
+        "heading": "Protection that <em>keeps working</em> long after you do.",
+        "lead": "A water-based, alcohol-free shield that kills germs on contact — and stays protecting surfaces and hands for hours.",
+        "primary_label": "Shop Covexall",
+        "primary_link": "",
+        "secondary_label": "How it works",
+        "secondary_link": "",
+        "fine_print": "Proven effective against COVID-19, MRSA, C. diff & E. coli · NDC 77238-221-24",
+        "stage_caption": "One application · lasting protection",
+        "aria_label": "Covexall hero"
+      }
+    },
+    "trust_bar_jEV8cQ": {
+      "type": "trust-bar",
+      "blocks": {
+        "item_zCqddK": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "FDA cGMP-compliant facility"
+          }
+        },
+        "item_3tYdkG": {
+          "type": "item",
+          "settings": {
+            "icon": "check",
+            "text": "Registered · NDC 77238-221-24"
+          }
+        },
+        "item_8cpwjE": {
+          "type": "item",
+          "settings": {
+            "icon": "lines",
+            "text": "Made in the USA"
+          }
+        },
+        "item_NXMnQM": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout"
+          }
+        }
+      },
+      "block_order": [
+        "item_zCqddK",
+        "item_3tYdkG",
+        "item_8cpwjE",
+        "item_NXMnQM"
+      ],
+      "name": "Covexall Trust Bar",
+      "settings": {}
+    },
+    "science_story_Kx99NC": {
+      "type": "science-story",
+      "blocks": {
+        "step_hnc77L": {
+          "type": "step",
+          "settings": {
+            "icon": "drop",
+            "title": "1 · Applied as a fine mist",
+            "text": "Water-based formula spreads evenly across skin or surface."
+          }
+        },
+        "step_dkAwr4": {
+          "type": "step",
+          "settings": {
+            "icon": "check",
+            "title": "2 · Kills germs on contact",
+            "text": "Neutralizes 99.9% of germs the moment it lands."
+          }
+        },
+        "step_qaf79C": {
+          "type": "step",
+          "settings": {
+            "icon": "shield-solid",
+            "title": "3 · Forms a lasting shield",
+            "text": "A microplatelet layer keeps protecting for up to 4 hours."
+          }
+        },
+        "point_MVVaJR": {
+          "type": "point",
+          "settings": {
+            "lead": "Alcohol-free & gentle.",
+            "text": "No sting, no dryness — safe enough for frequent use by the whole family."
+          }
+        },
+        "point_cwgjGM": {
+          "type": "point",
+          "settings": {
+            "lead": "Works on hands and surfaces.",
+            "text": "One product for personal protection and the high-touch surfaces around you."
+          }
+        },
+        "point_mwDt7g": {
+          "type": "point",
+          "settings": {
+            "lead": "Lasting, not momentary.",
+            "text": "Where alcohol sanitizers flash off in seconds, Covexall keeps protecting for hours."
+          }
+        }
+      },
+      "block_order": [
+        "step_hnc77L",
+        "step_dkAwr4",
+        "step_qaf79C",
+        "point_MVVaJR",
+        "point_cwgjGM",
+        "point_mwDt7g"
+      ],
+      "name": "Covexall Science Story",
+      "settings": {
+        "anchor": "science",
+        "eyebrow": "The Science",
+        "heading": "A liquid glove that doesn't wash off in seconds.",
+        "show_timeline": true,
+        "timeline_title": "How long protection lasts",
+        "timeline_note": "single application",
+        "tl_label_1": "Apply",
+        "tl_label_2": "1 hr",
+        "tl_label_3": "2 hr",
+        "tl_label_4": "3 hr",
+        "tl_label_5": "4 hr"
+      }
+    },
+    "collection_list_CWmnwY": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_NVYLja": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_KREFnT": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_yCAbbf": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_NVYLja",
+        "featured_collection_KREFnT",
+        "featured_collection_yCAbbf"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "catalog_handoff_ztTibc": {
+      "type": "catalog-handoff",
+      "blocks": {
+        "stat_jBj3VD": {
+          "type": "stat",
+          "settings": {
+            "value": "100+",
+            "label": "Products in catalog"
+          }
+        },
+        "stat_A3J4cY": {
+          "type": "stat",
+          "settings": {
+            "value": "Bulk",
+            "label": "Case & volume pricing"
+          }
+        },
+        "stat_4azAHB": {
+          "type": "stat",
+          "settings": {
+            "value": "GSA",
+            "label": "Government-ready"
+          }
+        },
+        "stat_jhCfFY": {
+          "type": "stat",
+          "settings": {
+            "value": "Fast",
+            "label": "Reliable fulfillment"
+          }
+        }
+      },
+      "block_order": [
+        "stat_jBj3VD",
+        "stat_A3J4cY",
+        "stat_4azAHB",
+        "stat_jhCfFY"
+      ],
+      "name": "Covexall Catalog Handoff",
+      "settings": {
+        "anchor": "catalog",
+        "eyebrow": "Full Medical Supply Catalog",
+        "heading": "Everything else your facility orders — in one place.",
+        "text": "<p>Beyond Covexall, browse our complete medical-supply catalog: wound care, catheters, gauze, exam essentials and more. Built for clinics, facilities, and institutional buyers.</p>",
+        "button_label": "Browse medical supplies",
+        "button_link": ""
+      }
+    },
+    "certifications_4cJ7Yf": {
+      "type": "certifications",
+      "blocks": {
+        "cert_dmpAUt": {
+          "type": "cert",
+          "settings": {
+            "icon": "shield",
+            "title": "FDA cGMP",
+            "caption": "Compliant manufacturing"
+          }
+        },
+        "cert_JFkbXB": {
+          "type": "cert",
+          "settings": {
+            "icon": "registered",
+            "title": "Registered",
+            "caption": "NDC 77238-221-24"
+          }
+        },
+        "cert_YGwWFa": {
+          "type": "cert",
+          "settings": {
+            "icon": "clock",
+            "title": "Lab-proven",
+            "caption": "COVID · MRSA · C. diff"
+          }
+        },
+        "cert_ii9wVV": {
+          "type": "cert",
+          "settings": {
+            "icon": "lines",
+            "title": "Made in USA",
+            "caption": "Domestic production"
+          }
+        }
+      },
+      "block_order": [
+        "cert_dmpAUt",
+        "cert_JFkbXB",
+        "cert_YGwWFa",
+        "cert_ii9wVV"
+      ],
+      "name": "Covexall Certifications",
+      "settings": {
+        "anchor": "certs",
+        "eyebrow": "Why Trust Covexall",
+        "heading": "Built to a clinical standard"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "covexall_hero_CUkG8k",
+    "trust_bar_jEV8cQ",
+    "science_story_Kx99NC",
+    "collection_list_CWmnwY",
+    "catalog_handoff_ztTibc",
+    "certifications_4cJ7Yf"
   ]
 }
