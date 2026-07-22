@@ -56,7 +56,7 @@ h3,
 }
 
 .cvx-eyebrow {
-  font-size: 0.72rem;
+  font-size: 1.152rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -73,7 +73,7 @@ h3,
   text-align: center;
 }
 .cvx-sec-head h2 {
-  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-size: clamp(3.04rem, 3.4vw, 4.32rem);
   font-weight: 800;
   color: var(--cvx-navy);
   margin-top: 12px;
@@ -81,7 +81,7 @@ h3,
 }
 .cvx-sec-head p {
   color: var(--cvx-ink-soft);
-  font-size: 1.05rem;
+  font-size: 1.68rem;
   margin-top: 14px;
 }
 
@@ -92,7 +92,7 @@ h3,
   gap: 8px;
   font-family: inherit;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1.44rem;
   padding: 12px 22px;
   border-radius: 10px;
   cursor: pointer;
@@ -142,7 +142,7 @@ h3,
   padding: 76px 0 84px;
 }
 .cvx-hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-size: clamp(4.16rem, 5vw, 6.4rem);
   font-weight: 800;
   color: var(--cvx-navy);
   line-height: 1.1;
@@ -152,7 +152,7 @@ h3,
   color: var(--cvx-teal-deep);
 }
 .cvx-hero .cvx-lead {
-  font-size: 1.14rem;
+  font-size: 1.824rem;
   color: var(--cvx-ink-soft);
   max-width: 34ch;
   margin: 22px 0 14px;
@@ -171,7 +171,7 @@ h3,
   border: 1px solid var(--cvx-line);
   padding: 9px 14px;
   border-radius: 100px;
-  font-size: 0.85rem;
+  font-size: 1.36rem;
   font-weight: 600;
   color: var(--cvx-navy);
   box-shadow: var(--cvx-shadow);
@@ -189,7 +189,7 @@ h3,
 }
 .cvx-hero-note {
   margin-top: 18px;
-  font-size: 0.82rem;
+  font-size: 1.312rem;
   color: var(--cvx-muted);
 }
 
@@ -260,7 +260,7 @@ h3,
   transform: translateX(-50%);
   background: rgba(14, 34, 48, 0.9);
   color: #fff;
-  font-size: 0.72rem;
+  font-size: 1.152rem;
   font-weight: 600;
   padding: 7px 16px;
   border-radius: 100px;
@@ -315,12 +315,12 @@ h3,
 }
 .cvx-bottle .label .b {
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.68rem;
   color: var(--cvx-navy);
   letter-spacing: -0.02em;
 }
 .cvx-bottle .label .s {
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--cvx-teal-deep);
@@ -334,7 +334,7 @@ h3,
   margin: 7px 12px;
 }
 .cvx-bottle .label .d {
-  font-size: 0.44rem;
+  font-size: 0.704rem;
   color: var(--cvx-muted);
   letter-spacing: 0.05em;
 }
@@ -357,7 +357,7 @@ h3,
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.83rem;
+  font-size: 1.328rem;
   font-weight: 600;
 }
 .cvx-trust-item svg {
@@ -418,11 +418,11 @@ h3,
   color: var(--cvx-teal-deep);
 }
 .cvx-layer h4 {
-  font-size: 0.98rem;
+  font-size: 1.568rem;
   color: var(--cvx-navy);
 }
 .cvx-layer p {
-  font-size: 0.85rem;
+  font-size: 1.36rem;
   color: var(--cvx-muted);
   margin-top: 2px;
 }
@@ -436,7 +436,7 @@ h3,
 .cvx-story-points li {
   display: flex;
   gap: 13px;
-  font-size: 0.98rem;
+  font-size: 1.568rem;
   color: var(--cvx-ink-soft);
 }
 .cvx-story-points svg {
@@ -451,7 +451,7 @@ h3,
   font-weight: 700;
 }
 .cvx-story h2 {
-  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-size: clamp(2.88rem, 3.2vw, 4rem);
   font-weight: 800;
   color: var(--cvx-navy);
   margin-top: 12px;
@@ -475,10 +475,10 @@ h3,
 }
 .cvx-timeline .cvx-tl-top b {
   color: var(--cvx-navy);
-  font-size: 0.95rem;
+  font-size: 1.52rem;
 }
 .cvx-timeline .cvx-tl-top span {
-  font-size: 0.78rem;
+  font-size: 1.248rem;
   color: var(--cvx-muted);
 }
 .cvx-track {
@@ -509,7 +509,7 @@ h3,
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
-  font-size: 0.72rem;
+  font-size: 1.152rem;
   color: var(--cvx-muted);
   font-weight: 600;
 }
@@ -535,7 +535,7 @@ h3,
   color: #7fded8;
 }
 .cvx-catalog h2 {
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-size: clamp(2.72rem, 3vw, 3.68rem);
   font-weight: 800;
   margin-top: 12px;
   line-height: 1.1;
@@ -543,7 +543,7 @@ h3,
 .cvx-catalog p {
   color: #bcd6da;
   margin-top: 14px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   max-width: 44ch;
 }
 .cvx-catalog .cvx-btn-primary {
@@ -566,14 +566,14 @@ h3,
   padding: 20px;
 }
 .cvx-cat-stat b {
-  font-size: 1.7rem;
+  font-size: 2.72rem;
   font-weight: 800;
   color: #fff;
   display: block;
   letter-spacing: -0.02em;
 }
 .cvx-cat-stat span {
-  font-size: 0.8rem;
+  font-size: 1.28rem;
   color: #9fc0c5;
 }
 
@@ -609,11 +609,11 @@ h3,
 }
 .cvx-cert b {
   display: block;
-  font-size: 0.92rem;
+  font-size: 1.472rem;
   color: var(--cvx-navy);
 }
 .cvx-cert span {
-  font-size: 0.76rem;
+  font-size: 1.216rem;
   color: var(--cvx-muted);
 }
 
@@ -655,20 +655,20 @@ h3,
   box-shadow: var(--cvx-shadow);
 }
 .cvx-proof-card .cvx-metric {
-  font-size: 2.4rem;
+  font-size: 3.84rem;
   font-weight: 800;
   color: var(--cvx-teal-deep);
   letter-spacing: -0.03em;
   line-height: 1;
 }
 .cvx-proof-card .cvx-metric-label {
-  font-size: 0.92rem;
+  font-size: 1.472rem;
   color: var(--cvx-navy);
   font-weight: 700;
   margin-top: 12px;
 }
 .cvx-proof-card .cvx-metric-source {
-  font-size: 0.74rem;
+  font-size: 1.184rem;
   color: var(--cvx-muted);
   margin-top: 6px;
 }
@@ -680,12 +680,12 @@ h3,
   box-shadow: var(--cvx-shadow);
 }
 .cvx-proof-results h3 {
-  font-size: 1.1rem;
+  font-size: 1.76rem;
   color: var(--cvx-navy);
   font-weight: 800;
 }
 .cvx-proof-results .cvx-results-note {
-  font-size: 0.82rem;
+  font-size: 1.312rem;
   color: var(--cvx-muted);
   margin: 4px 0 18px;
 }
@@ -701,7 +701,7 @@ h3,
   border-bottom: none;
 }
 .cvx-result-row .cvx-organism {
-  font-size: 0.95rem;
+  font-size: 1.52rem;
   font-weight: 700;
   color: var(--cvx-navy);
 }
@@ -711,14 +711,14 @@ h3,
   color: var(--cvx-ink-soft);
 }
 .cvx-result-row .cvx-detail {
-  font-size: 0.82rem;
+  font-size: 1.312rem;
   color: var(--cvx-muted);
 }
 .cvx-result-row .cvx-value {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.82rem;
+  font-size: 1.312rem;
   font-weight: 700;
   color: var(--cvx-teal-deep);
   background: var(--cvx-teal-wash);
@@ -731,7 +731,7 @@ h3,
   height: 14px;
 }
 .cvx-proof-cite {
-  font-size: 0.78rem;
+  font-size: 1.248rem;
   color: var(--cvx-muted);
   margin-top: 22px;
   line-height: 1.55;
@@ -769,7 +769,7 @@ h3,
     gap: 12px;
   }
   .cvx-trust-item {
-    font-size: 0.76rem;
+    font-size: 1.216rem;
   }
   .cvx-cat-stats {
     grid-template-columns: 1fr 1fr;
