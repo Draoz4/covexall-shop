@@ -88,7 +88,7 @@
       "settings": {
         "title": "Choose your protection",
         "heading_size": "h1",
-        "description": "From pocket-size to facility-scale — the same lasting shield in every bottle.",
+        "description": "<p>From pocket-size to facility-scale — the same lasting shield in every bottle.</p>",
         "show_description": true,
         "description_style": "body",
         "collection": "covexall",
