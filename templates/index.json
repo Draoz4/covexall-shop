@@ -274,20 +274,20 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "covexall-protection",
+        "collection": "wound-care-dressings",
         "products_to_show": 4,
         "title": "Choose your protection",
         "heading_size": "h1",
         "description": "<p>From pocket-size to facility-scale — the same lasting shield in every bottle.</p>",
         "show_description": true,
         "description_style": "body",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
@@ -297,6 +297,47 @@
         "swipe_on_mobile": true,
         "padding_top": 72,
         "padding_bottom": 64
+      }
+    },
+    "collection_list_KgCVDt": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_y3wVEr": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "covexall-protection"
+          }
+        },
+        "featured_collection_9jJpiP": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "wound-care-dressings"
+          }
+        },
+        "featured_collection_U6jqK7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "topicals-skin-care"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_y3wVEr",
+        "featured_collection_9jJpiP",
+        "featured_collection_U6jqK7"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Collections",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "catalog_handoff": {
@@ -401,6 +442,7 @@
     "science_story",
     "research_proof",
     "featured_collection",
+    "collection_list_KgCVDt",
     "catalog_handoff",
     "certifications"
   ]
