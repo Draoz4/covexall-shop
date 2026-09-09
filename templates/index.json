@@ -276,7 +276,35 @@
       "settings": {
         "collection": "medical-supplies-ppe",
         "products_to_show": 6,
-        "title": "Product Line",
+        "title": "Medical",
+        "heading_size": "h1",
+        "description": "<p>From pocket-size to facility-scale — the same lasting shield in every bottle.</p>",
+        "show_description": true,
+        "description_style": "body",
+        "columns_desktop": 6,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 72,
+        "padding_bottom": 64
+      }
+    },
+    "featured_collection_LhHWrn": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "racks-organizers",
+        "products_to_show": 6,
+        "title": "Racks & Organizers",
         "heading_size": "h1",
         "description": "<p>From pocket-size to facility-scale — the same lasting shield in every bottle.</p>",
         "show_description": true,
@@ -401,6 +429,7 @@
     "science_story",
     "research_proof",
     "featured_collection",
+    "featured_collection_LhHWrn",
     "catalog_handoff",
     "certifications"
   ]
