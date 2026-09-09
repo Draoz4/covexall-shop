@@ -276,7 +276,7 @@
       "settings": {
         "collection": "medical-supplies-ppe",
         "products_to_show": 4,
-        "title": "Choose your protection",
+        "title": "Product Line",
         "heading_size": "h1",
         "description": "<p>From pocket-size to facility-scale — the same lasting shield in every bottle.</p>",
         "show_description": true,
